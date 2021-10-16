@@ -1,16 +1,13 @@
-package com.userService.model;
+package com.userService.payload.request;
 
-public class JwtRequest {
+import javax.validation.constraints.NotBlank;
 
-	String username;
-	String password;
-	
-	public JwtRequest() {}
-	
-	public JwtRequest(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
+public class LoginRequest {
+	@NotBlank
+	private String username;
+
+	@NotBlank
+	private String password;
 
 	public String getUsername() {
 		return username;
@@ -27,6 +24,4 @@ public class JwtRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }
