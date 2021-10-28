@@ -8,5 +8,4 @@ public interface FlightsRepository extends JpaRepository<Flights, Integer> {
 
 	Flights findByCompany(String company);
 	
-	
 }

@@ -28,6 +28,17 @@ public class User {
   @NotBlank
   @Size(max = 120)
   private String password;
+  
+  
+  @NotBlank
+  private String firstname;
+
+  @NotBlank
+  private String lastname;
+  
+  private String gender;
+  private int age;
+  private String nationality;
 
   @DBRef
   private Set<Role> roles = new HashSet<>();
@@ -35,13 +46,25 @@ public class User {
   public User() {
   }
 
-  public User(String username, String email, String password) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-  }
+ 
 
-  public String getId() {
+  public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+		@NotBlank @Size(max = 120) String password, @NotBlank String firstname, @NotBlank String lastname,
+		String gender, int age, String nationality) {
+	
+	this.username = username;
+	this.email = email;
+	this.password = password;
+	this.firstname = firstname;
+	this.lastname = lastname;
+	this.gender = gender;
+	this.age = age;
+	this.nationality = nationality;
+}
+
+
+
+public String getId() {
     return id;
   }
 
@@ -80,4 +103,46 @@ public class User {
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
+
+public String getFirstname() {
+	return firstname;
+}
+
+public void setFirstname(String firstname) {
+	this.firstname = firstname;
+}
+
+public String getLastname() {
+	return lastname;
+}
+
+public void setLastname(String lastname) {
+	this.lastname = lastname;
+}
+
+public String getGender() {
+	return gender;
+}
+
+public void setGender(String gender) {
+	this.gender = gender;
+}
+
+public int getAge() {
+	return age;
+}
+
+public void setAge(int age) {
+	this.age = age;
+}
+
+public String getNationality() {
+	return nationality;
+}
+
+public void setNationality(String nationality) {
+	this.nationality = nationality;
+}
+  
+  
 }

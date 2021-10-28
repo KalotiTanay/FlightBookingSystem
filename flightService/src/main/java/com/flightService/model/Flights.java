@@ -38,18 +38,10 @@ public class Flights {
 	
 	private String flightName;
 	@Column(name="departure")
-	private String from_loc;
+	private String src_loc;
 	@Column(name="landing")
-	private String to_loc;
+	private String dest_loc;
 	private String company;
 	
 	private int capacity;
-	
-	@OneToMany(mappedBy = "Flights_Registry", cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<Seat> seats;
-	
-	@OneToMany(mappedBy = "Flights_Registry", cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<Screening> screening;
 }

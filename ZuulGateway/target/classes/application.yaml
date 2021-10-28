@@ -1,0 +1,20 @@
+server:
+   port: 8100
+      
+spring:
+  application:
+    name: Zuul-Gateway
+    
+zuul:
+   routes:
+      userService:
+         serviceId: user-service
+      flightService:
+         serviceId: Flights-Registry-Service
+      bookingService:
+         serviceId: passenger-booking-service
+
+eureka:
+  instance:
+    hostname: localhost
+

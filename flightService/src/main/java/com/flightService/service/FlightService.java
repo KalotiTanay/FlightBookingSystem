@@ -53,8 +53,8 @@ public class FlightService {
 		Flights existingFlight = flightsRepository.findById(flight.getId()).orElse(null);
 		existingFlight.setCompany(flight.getCompany());
 		existingFlight.setFlightName(flight.getFlightName());
-		existingFlight.setFrom_loc(flight.getFrom_loc());
-		existingFlight.setTo_loc(flight.getTo_loc());
+		existingFlight.setSrc_loc(flight.getSrc_loc());
+		existingFlight.setDest_loc(flight.getDest_loc());
 		
 		return flightsRepository.save(existingFlight);
 	}
