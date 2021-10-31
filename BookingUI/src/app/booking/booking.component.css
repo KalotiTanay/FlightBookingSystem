@@ -1,0 +1,19 @@
+.full-width{
+    margin-top: 15px;
+    width: calc(100vh);
+}
+
+.header-text{
+    font-size: 35px;
+    font-weight: bolder;
+    color: #616161;
+    margin-top: 60px;
+}
+
+mat-divider{
+    width: calc(100vh);
+}
+
+.content-div{
+    margin-top: 10px;
+}

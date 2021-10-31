@@ -2,6 +2,7 @@ package com.userService.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,11 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.userService.model.ERole;
 import com.userService.model.Role;
@@ -67,9 +64,10 @@ public class AuthController {
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(new JwtResponse(jwt,
-												 userDetails.getId(), 
+												 userDetails.getId(),
+												 userDetails.getFirstname(),
 												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
+												 userDetails.getEmail(),
 												 roles));
 	}
 
@@ -92,10 +90,11 @@ public class AuthController {
 							 signUpRequest.getEmail(),
 							 encoder.encode(signUpRequest.getPassword()),
 							 signUpRequest.getFirstname(),
-							 signUpRequest.getLastname(),
-							 signUpRequest.getGender(),
-							 signUpRequest.getAge(),
-							 signUpRequest.getNationality());
+							 signUpRequest.getLastname());
+
+		Random random = new Random();
+		String id = ("U"+random.nextLong(9999L));
+		user.setId(id);
 
 		Set<String> strRoles = signUpRequest.getRoles();
 		Set<Role> roles = new HashSet<>();
@@ -125,5 +124,17 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+
+	@GetMapping("/user/{username}")
+	public User getUser(@PathVariable ("username") String username) {
+		// for getting user details
+		return this.userRepository.findByUsername(username).orElse(null);
+	}
+
+	@DeleteMapping("/user/delete/{id}")
+	public String deleteById(@PathVariable ("id") String id) {
+		userRepository.deleteById(id);
+		return "User with id: "+id+" deleted successfully";
 	}
 }

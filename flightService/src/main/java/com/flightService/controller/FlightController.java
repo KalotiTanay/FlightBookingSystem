@@ -1,22 +1,17 @@
 package com.flightService.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.flightService.model.Flights;
 import com.flightService.service.FlightService;
 
 @RestController
 @RequestMapping("/flightService")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class FlightController {
 	
 	@Autowired
@@ -42,13 +37,19 @@ public class FlightController {
 		return flightService.getFlights();
 	}
 
+	@GetMapping("/departures")
+	public ArrayList<String> getDepartures() { return flightService.getSourceDest(); }
+
+	@GetMapping("/landings")
+	public ArrayList<String> getLandings() { return flightService.getFinalDest(); }
+
 	@GetMapping("/searchFlightById/{id}")
 	public Flights findFlightById(@PathVariable int id) {
 		return flightService.getFlightsByID(id);
 	}
 	
-	@GetMapping("/searchFlightByCompany/{company}")
-	public Flights findFlightsByCompany(@PathVariable String company) {
+	@GetMapping("/searchFlightByCompany")
+	public List<Flights> findFlightsByCompany(@RequestParam (name = "company") String company) {
 		return flightService.getFlightByCompany(company);
 	}
 	

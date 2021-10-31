@@ -1,5 +1,5 @@
 server:
-   port: 8100
+   port: 8080
       
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
 zuul:
    routes:
       userService:
-         serviceId: user-service
+         url: http://user-service
       flightService:
          serviceId: Flights-Registry-Service
       bookingService:

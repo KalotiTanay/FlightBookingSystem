@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>airplane_ticket</mat-icon>
+    </a>
+
+    <span>My Flight Booking Service</span>
+
+    <span class="example-spacer"></span>
+    
+    <button *ngIf="!login.isLoggedIn()" mat-button (click)="openDialog()">
+        <mat-icon>login</mat-icon>  Login/Register
+    </button>
+
+    <button *ngIf="login.isLoggedIn()" mat-button>
+      Welcome, {{login.getUser().firstname}}
+    </button>
+
+    <button *ngIf="login.isLoggedIn()" mat-button (click)="logoutUser()">
+      <mat-icon>logout</mat-icon>  Logout
+    </button>
+  </mat-toolbar>

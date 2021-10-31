@@ -1,6 +1,8 @@
 package com.flightService.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,17 +34,25 @@ public class FlightService {
 		return flightsRepository.findAll();
 	}
 	
-	public Flights getFlightsByID(int id) {
+	public Flights getFlightsByID(long id) {
 		return flightsRepository.findById(id).orElse(null);
 	}
 	
-	public Flights getFlightByCompany(String company) {
-		return flightsRepository.findByCompany(company);
+	public List<Flights> getFlightByCompany(String company) {
+		return flightsRepository.findFlightsByCompany(company);
+	}
+
+	public ArrayList<String> getSourceDest() {
+		return flightsRepository.getSourceLoc();
+	}
+
+	public ArrayList<String> getFinalDest() {
+		return flightsRepository.getDestLoc();
 	}
 	
 	// Delete Method
 	
-	public String deleteFlight(int id) {
+	public String deleteFlight(long id) {
 		flightsRepository.deleteById(id);
 		return "Flight by id: "+id+" is deleted form records !!";
 	}
@@ -58,4 +68,5 @@ public class FlightService {
 		
 		return flightsRepository.save(existingFlight);
 	}
+
 }

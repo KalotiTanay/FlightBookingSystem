@@ -1,0 +1,108 @@
+<h2 mat-dialog-title>User Login</h2>
+
+<mat-dialog-content>
+    <mat-tab-group mat-align-tabs="center">
+
+        <!--Login Tab-->
+        <mat-tab label="Login">
+
+            <div class="bootstrap-wrapper">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 TM20">
+
+                        <form method="post" (ngSubmit)='loginSubmit()'>
+                            <!--Username Section-->
+                            <p>
+                                <mat-form-field appearance="fill" class="signup-full-width">
+                                    <mat-label>Username</mat-label>
+                                    <input [(ngModel)]="loginCreds.username" matInput placeholder="Username Here." [formControl]="username" class="fields" name="username" required>
+                                    <mat-error *ngIf="username.invalid">{{getUserErrorMessage()}}</mat-error>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field appearance="fill" class="signup-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input [(ngModel)]="loginCreds.password" type="password" matInput placeholder="Enter Password." [formControl]="password" name="password" class="fields" required>
+                                    <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                                </mat-form-field>
+                            </p>
+                            <table align="center">
+                                <tr>
+                                    <td>
+                                        <button mat-raised-button color="primary" type="submit">Login</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+                        </div></div></div></div>
+
+        </mat-tab>
+
+
+        <!--Registration Tab-->
+        <mat-tab label="Register">
+
+            <div class="bootstrap-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 TM20">
+
+                            <form (ngSubmit)="registrationSubmit()" method="post">
+                                <!--FirstName Section-->
+                               
+                                    <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                                        <mat-label>First Name</mat-label>
+                                        <input [(ngModel)]="user.firstname" matInput placeholder="First name" [formControl]="firstname" class="fields" name="firstname" required>
+                                        <mat-error *ngIf="firstname.invalid">{{getNameErrorMessage()}}</mat-error>
+                                    </mat-form-field>
+                                
+                                    <!--Last Name Field-->
+                                    <mat-form-field appearance="fill" class="LM5 lenAdjust">
+                                        <mat-label>Last Name</mat-label>
+                                        <input [(ngModel)]="user.lastname" matInput placeholder="Last name" class="fields" name="lastname">
+                                    </mat-form-field>
+                                
+                                    <!--Email Field-->
+                                    <div class="email-container">
+                                        <mat-form-field appearance="fill" class="signup-full-width">
+                                            <mat-label>Enter your email</mat-label>
+                                            <input [(ngModel)]="user.email" matInput placeholder="someone@example.com" [formControl]="email" name="email" required>
+                                            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                                          </mat-form-field>
+                                    </div>
+                                    
+                                        <!--Username Section-->
+                                        <mat-form-field appearance="fill" class="RM5">
+                                            <mat-label>Username</mat-label>
+                                            <input [(ngModel)]="user.username" matInput placeholder="Username Here." [formControl]="username" class="fields" name="username" required>
+                                            <mat-error *ngIf="username.invalid">{{getUserErrorMessage()}}</mat-error>
+                                        </mat-form-field>
+                                    
+                                        <!--Password Section-->
+                                        <mat-form-field appearance="fill" class="LM5">
+                                            <mat-label>Enter password</mat-label>
+                                            <input [(ngModel)]="user.password" matInput [type]="hide ? 'password' : 'text'" [formControl]="password" name="password" required>
+                                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                            <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                                        </mat-form-field>
+                                    
+                                    <table align="center">
+                                        <tr>
+                                            <td>
+                                                <button mat-raised-button color="primary" type="submit">Register Me</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+      </mat-tab-group>
+</mat-dialog-content>

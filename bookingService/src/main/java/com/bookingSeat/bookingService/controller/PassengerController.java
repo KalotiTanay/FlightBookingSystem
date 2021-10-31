@@ -16,9 +16,6 @@ public class PassengerController {
     @Autowired
     private PassengerService passengerService;
 
-    @Autowired
-    private RestTemplate restTemplate;
-
     @PostMapping("/addPassenger")
     public Passenger addPassenger(@RequestBody Passenger passenger) {
         return passengerService.savePassenger(passenger);
@@ -34,21 +31,20 @@ public class PassengerController {
         return this.passengerService.getAllPassengers();
     }
 
-    @GetMapping("/boardingPassengers/{flight_id}")
-    public List<Passenger> getBoardingPassengers(@PathVariable("flight_id") Long flight_id){
-        List flights = this.restTemplate.getForObject("http://localhost:8081/searchFlightById/"+flight_id,List.class);
+    @GetMapping("/boardingPassengers")
+    public List<Passenger> getBoardingPassengers(@RequestParam(name = "flight_id") String flight_id){
         return this.passengerService.getPassengersByFlightId(flight_id);
     }
 
-    @GetMapping("/boardingPassengers/user/{username}")
-    public List<Passenger> getUserSpecificPassengers(@PathVariable("username") String username){
-        return this.passengerService.getPassengersByUserName(username);
+    @GetMapping("/boardingPassengers/user")
+    public List<Passenger> getUserSpecificPassengers(@RequestParam(name = "user_id") String userid){
+        return this.passengerService.getPassengersByUserName(userid);
     }
 
     @DeleteMapping("/boardingPassenger/deletePassenger")
-    public String deleteBoardingPassenger(@RequestParam(name = "passenger_id") Long id){
-        passengerService.deletePassenger(id);
-        return "Passenger with id: "+id+" is deleted successfully !!";
+    public String deleteBoardingPassenger(@RequestParam(name = "passenger_name") String name){
+        passengerService.deletePassenger(name);
+        return "Passenger with id: "+name+" is deleted successfully !!";
     }
 
 }
