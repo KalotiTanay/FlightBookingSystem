@@ -51,6 +51,8 @@ import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { FaqNavComponent } from './faq-nav/faq-nav.component';
 import { UserManagementComponent } from './management/user-management/user-management.component';
 import { FlightsManagementComponent } from './management/flights-management/flights-management.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { FooterComponent } from './footer/footer.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -103,6 +105,8 @@ const materialModules = [
     FaqNavComponent,
     UserManagementComponent,
     FlightsManagementComponent,
+    LandingPageComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

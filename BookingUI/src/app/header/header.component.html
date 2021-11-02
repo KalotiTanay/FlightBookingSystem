@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <a href="/landing" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>airplane_ticket</mat-icon>
     </a>
 
@@ -11,9 +11,17 @@
         <mat-icon>login</mat-icon>  Login/Register
     </button>
 
-    <button *ngIf="login.isLoggedIn()" mat-button>
-      Welcome, {{login.getUser().firstname}}
-    </button>
+    <a href="/admin-dashboard/home">
+      <button *ngIf="login.isLoggedIn() && login.getAuthority()=='ROLE_ADMIN'" mat-button>
+        Welcome, {{login.getUser().firstname}}
+      </button>
+    </a>
+
+    <a href="/user-dashboard/home">
+      <button *ngIf="login.isLoggedIn() && login.getAuthority()=='ROLE_USER'" mat-button>
+        Welcome, {{login.getUser().firstname}}
+      </button>
+    </a>
 
     <button *ngIf="login.isLoggedIn()" mat-button (click)="logoutUser()">
       <mat-icon>logout</mat-icon>  Logout

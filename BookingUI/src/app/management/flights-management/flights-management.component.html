@@ -8,7 +8,68 @@
             <mat-divider></mat-divider>
         
           <div class="content-div">
-            entry here
+            <mat-expansion-panel hideToggle class="full-width">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Add Flight
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form (ngSubmit)="flightSubmit()" method="post">
+                <table class="full-width"><tr>
+                  <td>
+                    <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                      <mat-label>Flight Name</mat-label>
+                      <input [(ngModel)]="flight.flightname" matInput placeholder="Flight name" [formControl]="flightname" class="fields" name="flightname" required>
+                      <mat-error *ngIf="flightname.invalid">Enter proper flightname</mat-error>
+                  </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                      <mat-label>Departure</mat-label>
+                      <input [(ngModel)]="flight.src_loc" matInput placeholder="Location from" [formControl]="src_loc" class="fields" name="src_loc" required>
+                      <mat-error *ngIf="src_loc.invalid">Enter valid location</mat-error>
+                  </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="fill" class="RM5">
+                      <mat-label>Landing</mat-label>
+                      <input [(ngModel)]="flight.dest_loc" matInput placeholder="Location to" [formControl]="dest_loc" class="fields" name="dest_loc" required>
+                      <mat-error *ngIf="dest_loc.invalid">Enter valid location</mat-error>
+                  </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                      <mat-label>Company</mat-label>
+                      <input [(ngModel)]="flight.company" matInput placeholder="Flight Company" [formControl]="company" class="fields" name="company" required>
+                      <mat-error *ngIf="company.invalid">Enter valid location</mat-error>
+                  </mat-form-field>
+                  </td>
+                  <td>
+                    <button mat-raised-button color="primary" type="submit" class="LM5">Register Flight</button>
+                  </td>
+                </tr>
+              </table>
+            </form> 
+            </mat-expansion-panel>      
+            
+            <mat-expansion-panel hideToggle class="full-width">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Delete Flight
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form (ngSubmit)="flightDelete()" method="post">
+              <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                <mat-label>Flight ID</mat-label>
+                <input type="number" [(ngModel)]="flightID" matInput placeholder="Flight ID" [formControl]="company" class="fields" name="company" required>
+                <mat-error *ngIf="company.invalid">Enter valid id</mat-error>
+            </mat-form-field>
+
+            <p><button mat-raised-button color="primary" type="submit" class="LM5">Register Flight</button></p>
+          </form>  
+          </mat-expansion-panel>
         </div>
         </div>
       </div>

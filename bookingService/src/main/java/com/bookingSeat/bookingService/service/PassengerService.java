@@ -24,14 +24,15 @@ public class PassengerService {
         return passengerRepository.findAll();
     }
 
-    public List<Passenger> getPassengersByFlightId(String flight_id){
+    public List<Passenger> getPassengersByFlightId(Long flight_id){
         return passengerRepository.findAll().stream().filter(passengers -> passengers.getFlight_id().equals(flight_id))
                 .collect(Collectors.toList());
     }
 
-    public List<Passenger> getPassengersByUserName(String user_id){
+    public Passenger getPassengersByUserId(String user_id){
         return passengerRepository.findByUserId(user_id);
     }
+
 
     // Post Methods
     public Passenger savePassenger (Passenger passenger) {
@@ -43,9 +44,9 @@ public class PassengerService {
     }
 
     // Delete passenger
-    public String deletePassenger(String name) {
-        passengerRepository.deleteById(name);
-        return "Flight by id: "+name+" is deleted form records !!";
+    public String deletePassenger(Long ticket_id) {
+        passengerRepository.deleteById(ticket_id);
+        return "Flight by id: "+ticket_id+" is deleted form records !!";
     }
 
 

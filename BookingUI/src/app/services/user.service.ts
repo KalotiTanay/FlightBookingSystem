@@ -16,4 +16,8 @@ export class UserService {
     return this.http.post(`${baseUrl}/api/signup`, user);
   }
 
+  public deleteUser(user_id: String) {
+    return this.http.delete(`${baseUrl}/user/delete/${user_id}`);
+  }
+
 }

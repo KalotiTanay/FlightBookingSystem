@@ -42,6 +42,5 @@ public class Flights {
 	@Column(name="landing")
 	private String dest_loc;
 	private String company;
-	
 	private int capacity;
 }

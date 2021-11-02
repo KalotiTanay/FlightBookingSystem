@@ -8,7 +8,67 @@
             <mat-divider></mat-divider>
         
           <div class="content-div">
-            entry here
+            <mat-expansion-panel hideToggle class="full-width">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Create User
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              
+              <form (ngSubmit)="registrationSubmit()" method="post">
+                <table class="full-width"><tr>
+                  <td>
+                    <!--FirstName Section-->
+                    <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                        <mat-label>First Name</mat-label>
+                        <input [(ngModel)]="user.firstname" matInput placeholder="First name" [formControl]="firstname" class="fields" name="firstname" required>
+                        <mat-error *ngIf="firstname.invalid">{{getNameErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <!--Last Name Field-->
+                    <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                        <mat-label>Last Name</mat-label>
+                        <input [(ngModel)]="user.lastname" matInput placeholder="Last name" class="fields" name="lastname">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <!--Email Field-->
+                    <div class="email-container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your email</mat-label>
+                            <input [(ngModel)]="user.email" matInput placeholder="someone@example.com" [formControl]="email" name="email" required>
+                            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                          </mat-form-field>
+                    </div>
+                  </td></tr>
+                  <tr><td>
+                        <!--Username Section-->
+                        <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                            <mat-label>Username</mat-label>
+                            <input [(ngModel)]="user.username" matInput placeholder="Username Here." [formControl]="username" class="fields" name="username" required>
+                            <mat-error *ngIf="username.invalid">{{getUserErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                        <!--Password Section-->
+                        <mat-form-field appearance="fill" class="RM5 lenAdjust">
+                            <mat-label>Enter password</mat-label>
+                            <input [(ngModel)]="user.password" matInput [type]="hide ? 'password' : 'text'" [formControl]="password" name="password" required>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                        <button mat-raised-button color="primary" type="submit" class="LM5">Register User</button>
+                      </td>
+                    </tr>
+                    </table>
+              </form>
+            
+            </mat-expansion-panel>
         </div>
         </div>
       </div>

@@ -52,6 +52,11 @@ public class FlightController {
 	public List<Flights> findFlightsByCompany(@RequestParam (name = "company") String company) {
 		return flightService.getFlightByCompany(company);
 	}
+
+	@GetMapping("/flightId/{loc1}/{loc2}")
+	public Long getIdByLoc(@PathVariable String loc1, @PathVariable String loc2) {
+		return flightService.getFlightID(loc1, loc2);
+	}
 	
 	@PutMapping("/updateFlight")
 	public Flights updateFlight(@RequestBody Flights flight) {

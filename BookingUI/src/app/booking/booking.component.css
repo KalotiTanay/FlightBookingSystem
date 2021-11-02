@@ -16,4 +16,22 @@ mat-divider{
 
 .content-div{
     margin-top: 10px;
+    font-size: 20px;
+}
+
+form{
+    font-size: 15px;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+.spacer{
+    margin-right: 5px;
+    margin-left: 5px;
 }

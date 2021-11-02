@@ -15,9 +15,12 @@ public interface FlightsRepository extends JpaRepository<Flights, Long> {
 	@Query("FROM Flights WHERE company = ?1")
 	List<Flights> findFlightsByCompany(String company);
 
-	@Query(value="SELECT departure FROM flights_registry", nativeQuery = true)
+	@Query(value="SELECT DISTINCT departure FROM flights_registry", nativeQuery = true)
 	ArrayList<String> getSourceLoc();
 
-	@Query(value="SELECT landing FROM flights_registry", nativeQuery = true)
+	@Query(value="SELECT DISTINCT landing FROM flights_registry", nativeQuery = true)
 	ArrayList<String> getDestLoc();
+
+	@Query(value="SELECT id FROM flights_registry WHERE (departure = ?1 AND landing = ?2)", nativeQuery = true)
+	Long findByLocations(String loc1, String loc2);
 }

@@ -8,15 +8,41 @@
             <mat-divider></mat-divider>
         
           <div class="content-div">
-            <h4>Basic mat-select</h4>
-            <mat-form-field appearance="fill">
-              <mat-label>Departures</mat-label>
-              <mat-select name="departure" id="departure" [(ngModel)]="departure">
-                <mat-option *ngFor="let departure of departures" [value]="departure">
-                  {{departure}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+
+            <form (ngSubmit)="formSubmit()" method="post" >    
+                    <mat-form-field appearance="fill">
+                      <mat-label>Select an option</mat-label>
+                      <mat-select [(ngModel)]="passenger.source_loc" [formControl]="myControl" name="departure" required>
+                        <mat-option *ngFor="let departure of departures" [value]="departure">{{departure}}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="myControl.invalid">Please select location</mat-error>
+                    </mat-form-field>
+                 
+                    <mat-form-field appearance="fill" class="spacer">
+                      <mat-label>Select an option</mat-label>
+                      <mat-select [(ngModel)]="passenger.dest_loc" [formControl]="secondControl" name="landing" required>
+                        <mat-option *ngFor="let landing of landings" [value]="landing">{{landing}}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="secondControl.invalid">Please select location</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="spacer">
+                      <mat-label>Adult Count</mat-label>
+                      <input type="number" matInput [(ngModel)]="passenger.adults" [formControl]="thirdControl" name="adults" required>
+                      <mat-error *ngIf="thirdControl.invalid">Please provide Adult count</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="spacer">
+                      <mat-label>Children Count</mat-label>
+                      <input type="number" matInput [(ngModel)]="passenger.childs" [formControl]="fourthControl" name="childs" required>
+                      <mat-error *ngIf="fourthControl.invalid">Please provide Children count</mat-error>
+                    </mat-form-field>
+                                                        
+                    <mat-divider></mat-divider>
+                                  
+                  <button mat-raised-button type="submit" color="primary" class="spacer">Book Ticket</button>
+            </form>
+             
           </div>
         </div>
       </div>

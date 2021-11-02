@@ -13,3 +13,20 @@
 mat-divider{
     width: calc(100vh);
 }
+
+.TM20 {
+    margin-top: 20px;
+  }
+  
+  .RM5 {
+    margin-right: 5px;
+  }
+  
+  .LM5{
+    margin-left: 5px;
+  }
+  
+  .lenAdjust{
+    width: 100%;
+  }
+  

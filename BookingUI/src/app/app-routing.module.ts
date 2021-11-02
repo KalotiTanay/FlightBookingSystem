@@ -4,6 +4,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { BookingComponent } from './booking/booking.component';
 import { FaqNavComponent } from './faq-nav/faq-nav.component';
 import { HomeNavComponent } from './home-nav/home-nav.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 import { FlightsManagementComponent } from './management/flights-management/flights-management.component';
 import { UserManagementComponent } from './management/user-management/user-management.component';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
@@ -12,6 +13,13 @@ import { UserGuard } from './services/user.guard';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
+
+  {path:'',redirectTo:'landing', pathMatch: 'full' },
+  
+  {
+    path: 'landing',
+    component: LandingPageComponent,
+  },
 
   {
     path: 'admin-dashboard',

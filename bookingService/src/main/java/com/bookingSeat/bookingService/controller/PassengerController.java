@@ -8,16 +8,29 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/passenger")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class PassengerController {
 
     @Autowired
     private PassengerService passengerService;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @PostMapping("/addPassenger")
     public Passenger addPassenger(@RequestBody Passenger passenger) {
+
+        Random random = new Random();
+        passenger.setTicket_id(random.nextLong(9999));
+
+        Long flightID = this.restTemplate.getForObject("http://localhost:8300/flightService/flightId/"+passenger.getSource_loc()+"/"+passenger.getDest_loc(), Long.class);
+
+        passenger.setFlight_id(flightID);
+
         return passengerService.savePassenger(passenger);
     }
 
@@ -32,19 +45,18 @@ public class PassengerController {
     }
 
     @GetMapping("/boardingPassengers")
-    public List<Passenger> getBoardingPassengers(@RequestParam(name = "flight_id") String flight_id){
+    public List<Passenger> getBoardingPassengers(@RequestParam(name = "flight_id") Long flight_id){
         return this.passengerService.getPassengersByFlightId(flight_id);
     }
 
-    @GetMapping("/boardingPassengers/user")
-    public List<Passenger> getUserSpecificPassengers(@RequestParam(name = "user_id") String userid){
-        return this.passengerService.getPassengersByUserName(userid);
+    @GetMapping("/boardingPassengers/user/{user_id}")
+    public Passenger getUserSpecificPassengers(@RequestParam("user_id") String user_id){
+        return this.passengerService.getPassengersByUserId(user_id);
     }
 
-    @DeleteMapping("/boardingPassenger/deletePassenger")
-    public String deleteBoardingPassenger(@RequestParam(name = "passenger_name") String name){
-        passengerService.deletePassenger(name);
-        return "Passenger with id: "+name+" is deleted successfully !!";
+    @DeleteMapping("/boardingPassenger/deletePassenger/{ticket_id}")
+    public String deleteBoardingPassenger(@RequestParam(name = "ticket_id") Long ticket_id){
+        return passengerService.deletePassenger(ticket_id);
     }
 
 }

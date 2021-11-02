@@ -2,7 +2,6 @@ package com.flightService.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,6 @@ public class FlightService {
 
 	@Autowired
 	private FlightsRepository flightsRepository;
-	
 	
 	// POST Methods
 	
@@ -49,6 +47,8 @@ public class FlightService {
 	public ArrayList<String> getFinalDest() {
 		return flightsRepository.getDestLoc();
 	}
+
+	public Long getFlightID(String loc1, String loc2) {return flightsRepository.findByLocations(loc1, loc2);}
 	
 	// Delete Method
 	

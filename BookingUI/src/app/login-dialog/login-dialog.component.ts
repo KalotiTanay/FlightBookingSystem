@@ -93,11 +93,11 @@ export class LoginDialogComponent implements OnInit {
 
         if(this.loginService.getAuthority() == 'ROLE_ADMIN'){
           // Admin Dashboard
-          window.location.href='/admin-dashboard';
+          window.location.href='/admin-dashboard/home';
         }
         else if(this.loginService.getAuthority() == 'ROLE_USER'){
           // User Dashboard
-          window.location.href='/user-dashboard';
+          window.location.href='/user-dashboard/home';
         }
         else{ this.loginService.logout(); }
 

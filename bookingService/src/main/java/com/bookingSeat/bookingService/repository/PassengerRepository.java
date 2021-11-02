@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface PassengerRepository extends MongoRepository<Passenger, String> {
+public interface PassengerRepository extends MongoRepository<Passenger, Long> {
     @Query("{user_id:?0}")
-    List<Passenger> findByUserId(String user_id);
+    Passenger findByUserId(String user_id);
 }
