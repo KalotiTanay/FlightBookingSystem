@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PassengerRepository extends MongoRepository<Passenger, Long> {
     @Query("{user_id:?0}")
-    Passenger findByUserId(String user_id);
+    List<Passenger> findByUserId(String user_id);
 }

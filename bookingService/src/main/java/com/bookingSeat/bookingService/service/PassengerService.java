@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 @Service
 public class PassengerService {
 
-    Random random = new Random();
-
     @Autowired
     private PassengerRepository passengerRepository;
 
@@ -29,7 +27,7 @@ public class PassengerService {
                 .collect(Collectors.toList());
     }
 
-    public Passenger getPassengersByUserId(String user_id){
+    public List<Passenger> getPassengersByUserId(String user_id){
         return passengerRepository.findByUserId(user_id);
     }
 

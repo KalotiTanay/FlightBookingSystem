@@ -50,12 +50,12 @@ public class PassengerController {
     }
 
     @GetMapping("/boardingPassengers/user/{user_id}")
-    public Passenger getUserSpecificPassengers(@RequestParam("user_id") String user_id){
+    public List<Passenger> getUserSpecificPassengers(@PathVariable String user_id){
         return this.passengerService.getPassengersByUserId(user_id);
     }
 
     @DeleteMapping("/boardingPassenger/deletePassenger/{ticket_id}")
-    public String deleteBoardingPassenger(@RequestParam(name = "ticket_id") Long ticket_id){
+    public String deleteBoardingPassenger(@PathVariable Long ticket_id){
         return passengerService.deletePassenger(ticket_id);
     }
 

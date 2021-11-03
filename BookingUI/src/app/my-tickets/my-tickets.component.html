@@ -19,12 +19,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let bookedTicket of tickets">
-                  <td>{{bookedTicket.ticket_id}}</td>
-                  <td>{{bookedTicket.source_loc}}</td>
-                  <td>{{bookedTicket.dest_loc}}</td>
-                  <td>{{bookedTicket.adults}}</td>
-                  <td>{{bookedTicket.childs}}</td>
+                <tr *ngFor="let ticket of dataSource">
+                  <td>{{ticket.ticket_id}}</td>
+                  <td>{{ticket.source_loc}}</td>
+                  <td>{{ticket.dest_loc}}</td>
+                  <td>{{ticket.adults}}</td>
+                  <td>{{ticket.childs}}</td>
                 </tr>
               </tbody>
             </table>

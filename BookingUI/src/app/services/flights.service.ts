@@ -39,11 +39,7 @@ export class FlightsService {
     return this.http.post(`${passengersURL}/passenger/addPassenger`,passengers);
   }
 
-  public cancelTicket(ticket_id:any) {
-    return this.http.delete(`${passengersURL}/passenger/boardingPassenger/deletePassenger/${ticket_id}`);
-  }
-
-  public getTickets(user_id:any) {
+  public getTickets(user_id: string) {
     return this.http.get(`${passengersURL}/passenger/boardingPassengers/user/${user_id}`);
   }
 }

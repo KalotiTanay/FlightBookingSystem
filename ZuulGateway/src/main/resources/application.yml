@@ -1,0 +1,20 @@
+zuul:
+  prefix: /app
+  routes:
+    passenger-booking-service:
+      path: /passengerServer/**
+      serviceId: PASSENGER-BOOKING-SERVICE
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
+
+server:
+  port: 8741
+
+spring:
+  application:
+    name: zuul-server
